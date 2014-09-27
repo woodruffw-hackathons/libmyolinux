@@ -23,7 +23,7 @@ conn, addr = sock.accept()
 
 while 1:
     data = struct.unpack("fffffffBB", conn.recv(30))
-    motion = POSES.get(conn[7], 'unknown')
+    motion = POSES.get(data[7], 'unknown')
     if not data: break
     print data
 conn.close()
