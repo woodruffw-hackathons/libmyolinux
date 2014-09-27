@@ -25,5 +25,5 @@ while 1:
     data = struct.unpack("fffffffBB", conn.recv(30))
     motion = POSES.get(data[7], 'unknown')
     if not data: break
-    print data
+    print motion
 conn.close()
