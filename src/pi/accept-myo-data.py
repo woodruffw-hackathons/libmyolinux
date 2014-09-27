@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # accept-myo-data.py
+# Author: William Woodruff
 
 import socket
 import struct
 
+# smartin015/MYO-python
 POSES = {
 0 : "rest",
 1 : "fist",
