@@ -142,3 +142,14 @@ int parse_packet(const unsigned char *raw){
     return 0;
 
 }
+
+int parse_gesture(const unsigned char *raw){
+
+    Packet *p = init_packet(raw);
+
+    printf("gesture=%s\n", get_gesture(p));
+    destroy_packet(p);
+
+    return 0;
+
+}
