@@ -123,7 +123,7 @@ class Game(threading.Thread):
         	print proc.stdout.readline()
 
 def main():
-        printstdin()
+        Game.printstdin()
 
 if __name__ == "__main__":
     main()
