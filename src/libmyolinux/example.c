@@ -21,7 +21,7 @@ int main(){
 	memset(&server, 0, sizeof(struct sockaddr_in));
 	server.sin_family = AF_INET;
 	server.sin_addr.s_addr = htonl(INADDR_ANY);
-	server.sin_port = htons(6969);
+	server.sin_port = htons(6970);
 
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     bind(sock, (struct sockaddr *) &server, sizeof(server));

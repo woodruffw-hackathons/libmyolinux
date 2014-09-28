@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #Example game using input from Thalmic Myo
 
 import pygame
@@ -6,6 +8,7 @@ import sys
 import os
 import tempfile
 import subprocess
+import threading
 
 from sys import stdin
 
@@ -117,7 +120,7 @@ def printstdin():
     	print proc.stdout.readline()
 
 def main():
-    printstdin()
- 
+    printstdin() 
+
 if __name__ == "__main__":
     main()
