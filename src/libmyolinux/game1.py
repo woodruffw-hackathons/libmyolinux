@@ -36,14 +36,14 @@ def game():
 
     # initialize socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('', sys.argv[1]))
+    sock.bind(('', int(sys.argv[1])))
     sock.listen(1)
     conn, addr = sock.accept()
 
     global last_pose
     pygame.init()
 
-    size = (350, 250)
+    size = (700, 500)
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("Myo Linux Driver Demo")
 
