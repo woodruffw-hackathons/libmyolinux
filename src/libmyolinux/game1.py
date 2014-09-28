@@ -8,7 +8,7 @@ import sys
 import os
 import tempfile
 import subprocess
-import threading
+import thread
 
 from sys import stdin
 
@@ -120,7 +120,7 @@ def printstdin():
     	print proc.stdout.readline()
 
 def main():
-    printstdin() 
+    thread.start_new_thread(printstdin, ())
 
 if __name__ == "__main__":
     main()
