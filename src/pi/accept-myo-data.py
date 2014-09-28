@@ -17,7 +17,7 @@ POSES = {
 }
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('', 6969))
+sock.bind(('', 6970))
 sock.listen(1)
 conn, addr = sock.accept()
 
