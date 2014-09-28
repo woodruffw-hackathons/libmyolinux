@@ -76,64 +76,28 @@ def game():
                 if motion == "rest":
                     x_speed = 0
                     out_speed = 0
-                if motion == "fist":
-                    out_speed = 10
-                if motion == "fingersSpread":
+                if motion == "thumbToPinky":
                     out_speed = -10
+                if motion == "fingersSpread":
+                    out_speed = 10
 
-		# for event in pygame.event.get():
-		#     if event.type == pygame.QUIT:
-		# 	done = True
-		#     # User pressed down on a key
-		#     if event.type == pygame.KEYDOWN:
-		# 	# Change Position
-		# 	if event.key == pygame.K_LEFT:
-		# 	    x_speed = -10
-		# 	if event.key == pygame.K_RIGHT:
-		# 	    x_speed = 10
-		# 	if event.key == pygame.K_UP:
-		# 	    y_speed = -10
-		# 	if event.key == pygame.K_DOWN:
-		# 	    y_speed = 10
-		# 	# Change Size
-		# 	if event.key == pygame.K_1:
-		# 	    out_speed = 10
-		# 	if event.key == pygame.K_2:
-		# 	    out_speed = -10
-		#     # User let up on a key
-		#     if event.type == pygame.KEYUP:
-		# 	# If it is an arrow key, reset vector back to zero
-		# 	if event.key == pygame.K_LEFT:
-		# 	    x_speed = 0
-		# 	if event.key == pygame.K_RIGHT:
-		# 	    x_speed = 0
-		# 	if event.key == pygame.K_UP:
-		# 	    y_speed = 0
-		# 	if event.key == pygame.K_DOWN:
-		# 	    y_speed = 0
-		# 	if event.key == pygame.K_1:
-		# 	    out_speed = 0
-		# 	if event.key == pygame.K_2:
-		# 	    out_speed = 0
-			    
-		#---Drawing code should go here---
-	  
-		#last_pose = myo.getPose()
-		#Clear Screen
-		screen.fill(WHITE)
-	    
-		# Move the object according to the speed vector.
-		x_coord += x_speed
-		y_coord += y_speed
-		height += out_speed
-		width += out_speed
-		
-		pygame.draw.rect(screen, BLUE, [x_coord, y_coord, width, height])
-		#update screen
-		pygame.display.flip()
+                #Clear Screen
+                screen.fill(WHITE)
+               
+                # Move the object according to the speed vector.
+                if x_coord > 0 or x_coord < 250:
+                    x_coord += x_speed
+                    y_coord += y_speed
 
-		#limit to 60 frames per second
-		clock.tick(60)
+                height += out_speed
+                width += out_speed
+
+                pygame.draw.rect(screen, BLUE, [x_coord, y_coord, width, height])
+                #update screen
+                pygame.display.flip()
+
+                #limit to 60 frames per second
+                clock.tick(60)
         except Exception, e:
             pass
         finally:
