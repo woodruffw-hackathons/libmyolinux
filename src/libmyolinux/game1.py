@@ -9,6 +9,8 @@ import os
 import tempfile
 import subprocess
 import thread
+import socket
+import struct
 
 from sys import stdin
 
