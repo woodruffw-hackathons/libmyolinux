@@ -10,13 +10,16 @@ GPIO.cleanup()
 GPIO.setup(7, GPIO.OUT)
 
 p = GPIO.PWM(7, 50)
-p.start(7.5)
-while True:
-	p.ChangeDutyCycle(4.5)
-	time.sleep(0.5)
-	p.ChangeDutyCycle(10.5)
-	time.sleep(0.5)
-	p.ChangeDutyCycle(7.5)
-	time.sleep(0.5)
 p.stop()
-GPIO.cleanup()
+p.start(7.5)
+try:
+	while True:
+		p.ChangeDutyCycle(4.5)
+		time.sleep(0.5)
+		p.ChangeDutyCycle(10.5)
+		time.sleep(0.5)
+		p.ChangeDutyCycle(7.5)
+		time.sleep(0.5)
+except KeyboardInterrupt:
+	p.stop()
+	GPIO.cleanup()
