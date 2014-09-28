@@ -13,10 +13,10 @@ GPIO.setup(12, GPIO.OUT)
 
 while True:
 	GPIO.output(7, GPIO.HIGH)
-	time.sleep(1000)
+	time.sleep(1)
 	GPIO.output(11, GPIO.HIGH)
-	time.sleep(1000)
+	time.sleep(1)
 	GPIO.output(12, GPIO.HIGH)
-	time.sleep(1000)
+	time.sleep(1)
 
 GPIO.cleanup()
