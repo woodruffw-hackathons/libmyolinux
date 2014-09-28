@@ -43,7 +43,7 @@ def game():
     global last_pose
     pygame.init()
 
-    size = (700, 500)
+    size = (350, 250)
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("Myo Linux Driver Demo")
 
@@ -68,6 +68,7 @@ def game():
                 data = struct.unpack("fffffffBB", conn.recv(30))
                 motion = POSES.get(data[7], 'unknown')
                 if not data: break
+                print motion
                 if motion == "waveOut":
                     x_speed = -10
                 if motion == "waveIn":
