@@ -54,18 +54,18 @@ def game():
             if event.type == pygame.KEYDOWN:
                 # Change Position
                 if event.key == pygame.K_LEFT:
-                    x_speed = -3
+                    x_speed = -10
                 if event.key == pygame.K_RIGHT:
-                    x_speed = 3
+                    x_speed = 10
                 if event.key == pygame.K_UP:
-                    y_speed = -3
+                    y_speed = -10
                 if event.key == pygame.K_DOWN:
-                    y_speed = 3
+                    y_speed = 10
                 # Change Size
                 if event.key == pygame.K_1:
-                    out_speed = 3
+                    out_speed = 10
                 if event.key == pygame.K_2:
-                    out_speed = -3
+                    out_speed = -10
             # User let up on a key
             if event.type == pygame.KEYUP:
                 # If it is an arrow key, reset vector back to zero
