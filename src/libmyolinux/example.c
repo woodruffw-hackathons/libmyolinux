@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <unistd.h>
 #include "myolinux.h"
 
 int main(){
@@ -26,7 +27,7 @@ int main(){
     bind(sock, (struct sockaddr *) &server, sizeof(server));
 
 
-    int conn = accept(server, (struct sockaddr *) NULL, NULL);
+    int conn = accept(sock, (struct sockaddr *) NULL, NULL);
 
     while (1) {
     	recv(conn, buffer, 30, 0);
