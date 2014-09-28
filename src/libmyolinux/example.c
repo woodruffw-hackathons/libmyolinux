@@ -31,7 +31,7 @@ int main(){
 
     while (1) {
     	recv(conn, buffer, 30, 0);
-    	parse_packet(buffer);
+    	parse_gesture(buffer);
     }
 
     close(conn);
