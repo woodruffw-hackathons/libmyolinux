@@ -1,8 +1,8 @@
 #!/usr/bin/env perl
 
-my $lc = 0;
 while (<>) {
-	if ($lc % 5) {
+	chomp;
+	if (($. % 5) == 0) {
 		if ($_ eq "rest") {
 
 		}
@@ -16,15 +16,10 @@ while (<>) {
 		}
 		elsif ($_ eq "fist") {
 			#`amixer set master Mute`;
-			print "fist\n";
+			print "fi\n";
 		}
 		else {
 			#`amixer set master Unmute`;
 		}
-	}
-	$lc++;
-
-	if ($lc gt 2000000000) {
-		$lc = 0;
 	}
 }
