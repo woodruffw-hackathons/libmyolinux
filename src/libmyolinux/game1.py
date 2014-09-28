@@ -17,7 +17,7 @@ from sys import stdin
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = ( 0, 255, 0)
-RED = ( 255, 0, 0)
+RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 
 PI = 3.1415
@@ -39,8 +39,6 @@ def game():
     sock.bind(('', 6970))
     sock.listen(1)
     conn, addr = sock.accept()
-
-
 
     global last_pose
     pygame.init()
@@ -70,44 +68,52 @@ def game():
                 data = struct.unpack("fffffffBB", conn.recv(30))
                 motion = POSES.get(data[7], 'unknown')
                 if not data: break
-                print motion
+                if motion == "waveOut":
+                    x_speed = -10
+                if motion == "waveIn":
+                    x_speed = 10
                 if motion == "rest":
-                    print "!!!"
-		
-		for event in pygame.event.get():
-		    if event.type == pygame.QUIT:
-			done = True
-		    # User pressed down on a key
-		    if event.type == pygame.KEYDOWN:
-			# Change Position
-			if event.key == pygame.K_LEFT:
-			    x_speed = -3
-			if event.key == pygame.K_RIGHT:
-			    x_speed = 3
-			if event.key == pygame.K_UP:
-			    y_speed = -3
-			if event.key == pygame.K_DOWN:
-			    y_speed = 3
-			# Change Size
-			if event.key == pygame.K_1:
-			    out_speed = 3
-			if event.key == pygame.K_2:
-			    out_speed = -3
-		    # User let up on a key
-		    if event.type == pygame.KEYUP:
-			# If it is an arrow key, reset vector back to zero
-			if event.key == pygame.K_LEFT:
-			    x_speed = 0
-			if event.key == pygame.K_RIGHT:
-			    x_speed = 0
-			if event.key == pygame.K_UP:
-			    y_speed = 0
-			if event.key == pygame.K_DOWN:
-			    y_speed = 0
-			if event.key == pygame.K_1:
-			    out_speed = 0
-			if event.key == pygame.K_2:
-			    out_speed = 0
+                    x_speed = 0
+                    out_speed = 0
+                if motion == "fist":
+                    out_speed = 10
+                if motion == "fingersSpread":
+                    out_speed = -10
+
+		# for event in pygame.event.get():
+		#     if event.type == pygame.QUIT:
+		# 	done = True
+		#     # User pressed down on a key
+		#     if event.type == pygame.KEYDOWN:
+		# 	# Change Position
+		# 	if event.key == pygame.K_LEFT:
+		# 	    x_speed = -10
+		# 	if event.key == pygame.K_RIGHT:
+		# 	    x_speed = 10
+		# 	if event.key == pygame.K_UP:
+		# 	    y_speed = -10
+		# 	if event.key == pygame.K_DOWN:
+		# 	    y_speed = 10
+		# 	# Change Size
+		# 	if event.key == pygame.K_1:
+		# 	    out_speed = 10
+		# 	if event.key == pygame.K_2:
+		# 	    out_speed = -10
+		#     # User let up on a key
+		#     if event.type == pygame.KEYUP:
+		# 	# If it is an arrow key, reset vector back to zero
+		# 	if event.key == pygame.K_LEFT:
+		# 	    x_speed = 0
+		# 	if event.key == pygame.K_RIGHT:
+		# 	    x_speed = 0
+		# 	if event.key == pygame.K_UP:
+		# 	    y_speed = 0
+		# 	if event.key == pygame.K_DOWN:
+		# 	    y_speed = 0
+		# 	if event.key == pygame.K_1:
+		# 	    out_speed = 0
+		# 	if event.key == pygame.K_2:
+		# 	    out_speed = 0
 			    
 		#---Drawing code should go here---
 	  
@@ -133,34 +139,6 @@ def game():
             conn.close()
             sock.close()
     pygame.quit()
-
-def printstdin():
-    POSES = {
-    0 : "rest",
-    1 : "fist",
-    2 : "waveIn",
-    3 : "waveOut",
-    4 : "fingersSpread",
-    5 : "reserved1",
-    6 : "thumbToPinky",
-    }
-
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('', 6970))
-    sock.listen(1)
-    conn, addr = sock.accept()
-
-    try:
-        while 1:
-            data = struct.unpack("fffffffBB", conn.recv(30))
-            motion = POSES.get(data[7], 'unknown')
-            if not data: break
-            print motion
-    except Exception, e:
-        pass
-    finally:
-        conn.close()
-        sock.close()
 
 def main():
     game() 
