@@ -7,19 +7,16 @@ while (<>) {
 
 		}
 		elsif ($_ eq "waveIn") {
-			#`amixer -D pulse sset Master 5%+`;
-			print "wi\n";
+			`amixer -D pulse sset Master 5%+`;
 		}
 		elsif ($_ eq "waveOut") {
-			#`amixer -D pulse sset Master 5%-`;
-			print "wo\n";
+			`amixer -D pulse sset Master 5%-`;	
 		}
 		elsif ($_ eq "fist") {
-			#`amixer set master Mute`;
-			print "fi\n";
+			`amixer set master Mute`;
 		}
 		else {
-			#`amixer set master Unmute`;
+			`amixer set master Unmute`;
 		}
 	}
 }
