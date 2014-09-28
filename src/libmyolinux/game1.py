@@ -5,12 +5,9 @@ import random
 import sys
 import os
 import tempfile
+import subprocess
 
 from sys import stdin
-
-
-#Import lib w/ myo gestures
-from myo import Myo
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -21,7 +18,7 @@ BLUE = (0, 0, 255)
 PI = 3.1415
 
 #---Main Program Loop---
-def game(myo):
+def game():
     global last_pose
     pygame.init()
 
@@ -80,11 +77,7 @@ def game(myo):
                 if event.key == pygame.K_2:
                     out_speed = 0
                     
-        #printData(myo)
-        
         #---Drawing code should go here---
-        #if (pose_str == "waveOut") and (last_pose != myo.getPose()):
-        #    myo.vibrate(Myo.VIBE_MEDIUM)
   
         #last_pose = myo.getPose()
         #Clear Screen
@@ -104,6 +97,7 @@ def game(myo):
         clock.tick(60)
     pygame.quit()
 
+'''
 def printData(myo):
 
     global last_pose
@@ -114,29 +108,16 @@ def printData(myo):
         myo.vibrate(Myo.VIBE_MEDIUM)
   
     last_pose = myo.getPose()
+'''
 
-def printstdin(myo):
+def printstdin():
+    proc = subprocess.Popen("./example", bufsize=0, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
 
-    tmpdir = tempfile.mkdtemp()
-    filename = os.path.join(tmpdir, 'myfifo')
-    print filename
-    try:
-        os.mkfifo(filename)
-    except OSError, e:
-        print "Failed to create FIFO: %s" % e
-    else:
-        fifo = open(filename, 'w')
-        for i in range(100):
-            print >> fifo, "hello"
-        fifo.close()
-        os.remove(filename)
-        os.rmdir(tmpdir)
-        
+    while True: 
+    	print proc.stdout.readline()
+
 def main():
-    myMyo = Myo(callback=printstdin)
-    myMyo.daemon = True
-    myMyo.start()
-    raw_input("Press enter to exit")
-      
+    printstdin()
+ 
 if __name__ == "__main__":
     main()
