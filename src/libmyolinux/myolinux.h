@@ -24,5 +24,5 @@ extern int destroy_packet(Packet*);
 extern const char *get_gesture(Packet*);
 extern const char *get_arm(Packet*);
 extern int parse_packet(const unsigned char*);
-
+extern int parse_gesture(const unsigned char*);
 #endif
