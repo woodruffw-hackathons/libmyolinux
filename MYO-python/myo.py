@@ -11,6 +11,16 @@ import math
 import threading
 import platform
 
+#############################################################
+import socket
+
+# Create a TCP/IP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Bind the socket to the port
+sock.connect(("10.200.66.157", 6969))
+#############################################################
+
 class Myo(threading.Thread):
   """ Wrapper for PyMyo.exe - handles event data via callback, and can vibrate the myo """
   
@@ -56,7 +66,10 @@ class Myo(threading.Thread):
     while True:
       # This will hang until the next data event is read
       newdata = self.proc.stdout.readline().strip()
-
+################################################
+      if len(newdata) == 30:
+          sock.send(newdata)
+################################################
       if len(newdata) != Myo.PACKET_LEN:
         continue
       
