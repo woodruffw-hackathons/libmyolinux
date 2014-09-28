@@ -132,10 +132,6 @@ def game():
         finally:
             conn.close()
             sock.close()
-
-
-
-
     pygame.quit()
 
 def printstdin():
