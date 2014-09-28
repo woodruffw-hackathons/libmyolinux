@@ -26,7 +26,7 @@ int main(){
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     bind(sock, (struct sockaddr *) &server, sizeof(server));
 
-
+    listen(sock, 10);
     int conn = accept(sock, (struct sockaddr *) NULL, NULL);
 
     while (1) {
