@@ -4,6 +4,7 @@
 
 import socket
 import struct
+import sys
 
 # smartin015/MYO-python
 POSES = {
@@ -17,7 +18,7 @@ POSES = {
 }
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('', 6970))
+sock.bind(('', sys.argv[1]))
 sock.listen(1)
 conn, addr = sock.accept()
 

@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 import time
 import socket
 import struct
+import sys
 
 POSES = {
 0 : "rest",
@@ -18,7 +19,7 @@ POSES = {
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server.bind('', 6968)
+server.bind('', sys.argv[1])
 server.listen(1)
 conn, addr = server.accept()
 
@@ -34,7 +35,7 @@ p1.start(0)
 p2.start(0)
 try:
 	while True:
-	    	data = struct.unpack("ffffffBB", conn.recv(30))
+	    data = struct.unpack("ffffffBB", conn.recv(30))
 		motion = POSES.get(data[7], 'unknown')
    		if not data: break
 		if motion == "fingersSpread"
