@@ -4,7 +4,7 @@ my $lc = 0;
 while (<>) {
 	if ($lc % 5) {
 		if ($_ eq "rest") {
-			continue;
+			
 		}
 		elsif ($_ eq "waveIn") {
 			`amixer -D pulse sset Master 5%+`;
