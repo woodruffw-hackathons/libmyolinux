@@ -19,7 +19,7 @@ POSES = {
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server.bind('', sys.argv[1])
+server.bind('', int(sys.argv[1]))
 server.listen(1)
 conn, addr = server.accept()
 
